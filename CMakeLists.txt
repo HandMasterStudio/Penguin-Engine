@@ -5,7 +5,8 @@ add_executable(penguin
     src/glad.c
     src/main.cpp
     src/window/window.cpp
-    src/core/core.cpp
+    src/loader/loader.cpp 
+    src/loader/shaderLoader.cpp 
 )
 
 add_subdirectory(include/glfw-master)
@@ -20,3 +21,11 @@ target_link_libraries(penguin
     glfw 
     opengl32
 )
+
+add_custom_command(TARGET penguin POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/res
+            $<TARGET_FILE_DIR:penguin>/res
+)
+
+

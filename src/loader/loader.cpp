@@ -16,6 +16,11 @@ Loader::Loader(vector<float> vertices){
     unBind();
 }
 
+void Loader::renderArrays(unsigned int vao){
+    glBindVertexArray(vao);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+}
+
 void Loader::clean(){
     cout<<"Clean Loader"<<endl;
     vertices.clear();
