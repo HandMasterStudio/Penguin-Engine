@@ -12,19 +12,28 @@ int main(){
     window.init(0,0,0);
 
     vector<float>vertices{
-        -0.5f, -0.5f, 0.0f, // left  
-         0.5f, -0.5f, 0.0f, // right 
-         0.0f,  0.5f, 0.0f  // top 
+        0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left 
+    };
+
+    vector<unsigned int> indices{
+        0, 1, 3,  // first Triangle
+        1, 2, 3   // second Triangle
     };
 
     ShaderLoader* shader = new ShaderLoader("res/shader/vertex.shader","res/shader/fragment.shader");
-    Loader* traingle = new Loader(vertices);
+    Loader* traingle = new Loader(vertices, indices);
+
+    //loader init
+    traingle->loadIndices();
 
     while(!glfwWindowShouldClose(window.getWindow())){
         window.color();
 
         shader->use();
-        traingle->renderArrays(traingle->getVao());
+        traingle->renderElements(traingle->getVao());
 
         window.swap();
     }

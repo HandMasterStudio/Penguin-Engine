@@ -11,6 +11,7 @@ void Window::init(int x, int y, int z){
 
     clearColor(x,y,z);
     glClearColor(this->x,this->y,this->z,1);
+    cout<<"Opengl Version: "<<glGetString(GL_VERSION)<<endl;
 }
 
 void Window::color(){
