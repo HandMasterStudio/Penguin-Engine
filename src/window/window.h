@@ -3,6 +3,11 @@
 #include<glfw/glfw3.h>
 #include<iostream>
 
+// ▄▄   ▄▄ ▄▄ ▄▄  ▄▄ ▄▄▄▄   ▄▄▄  ▄▄   ▄▄*
+// ██ ▄ ██ ██ ███▄██ ██▀██ ██▀██ ██ ▄ ██ 
+//  ▀█▀█▀  ██ ██ ▀██ ████▀ ▀███▀  ▀█▀█▀  
+
+
 using namespace std;
 
 class Window{
@@ -15,9 +20,13 @@ public:
     //set
     void setWindowSize(int w, int h);
     void setWindowTitle(const char* title);
+    void setW(int w);
+    void setH(int h);
 
     //get 
     GLFWwindow* getWindow() const;
+    int getW() const;
+    int getH() const;
 
 private: 
     GLFWwindow* window = nullptr;

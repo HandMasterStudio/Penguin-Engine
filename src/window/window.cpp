@@ -1,5 +1,7 @@
 #include "window/window.h"
 
+void frameBufferCallBack(GLFWwindow* window, int w, int h);
+
 void Window::init(int x, int y, int z){
     glfwInit();
     glfwHint();
@@ -7,6 +9,8 @@ void Window::init(int x, int y, int z){
     window = glfwCreateWindow(w,h,title,NULL,NULL);
     windowERROR();
     glfwMakeContextCurrent(window);
+    glfwSetWindowUserPointer(window, this);
+    glfwSetFramebufferSizeCallback(window, frameBufferCallBack);
     gladInit();
 
     clearColor(x,y,z);
@@ -30,20 +34,34 @@ void Window::clean(){
 
 //set
 void Window::setWindowSize(int w, int h){
-    this->w = w;
-    this->h = h;
     glfwSetWindowSize(window, w,h);
     cout<<"Set window size: "<<w<<","<<h<<endl;
 }
 
 void Window::setWindowTitle(const char* title){
-    this->title = title;
     glfwSetWindowTitle(window, title);
+    this->title = title;
+    cout<<"set window title: "<<title<<endl;
+}
+
+void Window::setW(int w){
+    this->w = w;
+}
+void Window::setH(int h){
+    this->h = h;
 }
 
 //get 
 GLFWwindow* Window::getWindow() const{
     return window;
+}
+
+int Window::getW() const{
+    return this->w;
+}
+
+int Window::getH() const{
+    return this->h;
 }
 
 //private
@@ -77,6 +95,14 @@ void Window::clearColor(int x, int y, int z){
     this->y = y;
     this->z = z;
     cout<<"Setting Up color"<<endl;
+}
+
+void frameBufferCallBack(GLFWwindow* window, int w, int h){
+    glViewport(0,0,w,h);
+
+    Window* self = (Window*)glfwGetWindowUserPointer(window);
+    self->setW(w);
+    self->setH(h);
 }
 
 Window window;
