@@ -20,6 +20,8 @@ public:
     //set
     void setWindowSize(int w, int h);
     void setWindowTitle(const char* title);
+
+    //just dont use it!
     void setW(int w);
     void setH(int h);
 

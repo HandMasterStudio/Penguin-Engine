@@ -44,6 +44,8 @@ void Window::setWindowTitle(const char* title){
     cout<<"set window title: "<<title<<endl;
 }
 
+//just dont use it!
+
 void Window::setW(int w){
     this->w = w;
 }
@@ -96,6 +98,8 @@ void Window::clearColor(int x, int y, int z){
     this->z = z;
     cout<<"Setting Up color"<<endl;
 }
+
+//outside header
 
 void frameBufferCallBack(GLFWwindow* window, int w, int h){
     glViewport(0,0,w,h);

@@ -34,18 +34,12 @@ int main(){
     //loader init
     traingle->loadIndices();
 
-    window.setWindowSize(800,600);
-
     while(!glfwWindowShouldClose(window.getWindow())){
         window.color();
 
         shader->use();
         traingle->renderElements(traingle->getVao());
-
-        if(glfwGetKey(window.getWindow(),GLFW_KEY_F)==GLFW_PRESS){
-            cout<<window.getW()<<window.getH()<<endl;
-        }
-
+        
         window.swap();
     }
     window.clean();

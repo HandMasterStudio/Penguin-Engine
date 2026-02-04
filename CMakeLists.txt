@@ -10,15 +10,18 @@ add_executable(penguin
 )
 
 add_subdirectory(include/glfw-master)
+add_subdirectory(include/glm)
 
 target_include_directories(penguin PUBLIC
     src 
     include 
     include/glfw/include
+    include/glm/glm
 )
 
 target_link_libraries(penguin
     glfw 
+    glm
     opengl32
 )
 
